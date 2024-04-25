@@ -53,7 +53,3 @@ https://quizzical-7lbe.onrender.com/</p>
     <li>id (pk, int) - идентификатор</li>
     <li>name (varchar) - название категории</li>
 </ul>
-
-
-<h2>Диаграмма</h2>
-![Project](diagram.png "Project")
