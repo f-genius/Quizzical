@@ -1,0 +1,26 @@
+<div class="main__inner top_item">
+    <nav id="nav_id" class="main__navigation">
+    </nav>
+    <script>
+        fetch('/category-test', {
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+                .then(response => response.json())
+                .then(data => {
+                    const nav = document.getElementById('nav_id');
+
+                    for (let i = 0; i < 8; i++) {
+                        const link = document.createElement('a');
+                        link.setAttribute('href', '/categories/' + data[i].name);
+                        link.setAttribute('class', 'main__theme_list_item');
+                        link.textContent = '#' + data[i].name.toLowerCase();
+                        nav.appendChild(link);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка получения данных:', error);
+                });
+    </script>
+</div>

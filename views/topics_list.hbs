@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    {{> style_bundles}}
+    {{> shared_scripts}}
+    <meta
+            name = "description"
+            content = "Вас ждут различные тематические тесты: образовательные, психологические,
+                   развлекательные, тесты на IQ и многие другие. Испытайте себя!" />
+    <title>{{ title }}</title>
+</head>
+
+<body>
+<main id="main_container_id" class="main">
+    <div class="d"><h1 class="main__title title"><span>Каталог тестов</span></h1></div>
+    <script>
+        fetch('/category-test/')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('main_container_id');
+
+                    for (let i = 0; i < Object.keys(data).length - 1; i++) {
+                        const div = document.createElement('div');
+                        div.setAttribute('class', 'main__card');
+                        const link = document.createElement('a');
+                        link.setAttribute('href', '/categories/' + data[i].name);
+                        link.setAttribute('class', 'main__card_link');
+                        link.textContent = data[i].name;
+                        const desc = document.createElement('p');
+                        desc.setAttribute('class', 'main__card_description');
+                        desc.textContent = data[i].description;
+                        console.log(data[i].description);
+                        div.appendChild(link);
+                        div.appendChild(desc);
+                        container.appendChild(div);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка получения данных:', error);
+                });
+    </script>
+</main>
+</body>
+</html>

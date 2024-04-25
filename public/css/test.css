@@ -1,0 +1,67 @@
+.test_container {
+    position: relative;
+    font-family: monospace;
+}
+
+.test_name {
+    font-size: 300%;
+    margin-bottom: 60px;
+}
+
+.question_container {
+    position: relative;
+    left: 1%;
+}
+
+.question_text {
+    font-size: 200%;
+}
+
+.answer_container {
+    font-size: 150%;
+    display: flex;
+    position: relative;
+    left: 4%;
+}
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+    align-self: center;
+    margin-right: 15px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: black;
+    accent-color: #9200B6;
+}
+
+.start_test_button {
+    padding: 10px;
+    background: #9200B6;
+    color: white;
+    border-color: #9200B6;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 7px;
+    width: 10%;
+    height: 10%;
+    font-size: 20px;
+    box-shadow: 5px 5px black;
+    margin: 60px;
+}
+
+.start_test_button:hover {
+    background: #50006C;
+}
+
+.congrats {
+    font-size: 300%;
+    font-family: monospace;
+    position: relative;
+    left: 20%;
+}
+
+.dop {
+    height: 50vh;
+}

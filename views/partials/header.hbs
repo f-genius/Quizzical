@@ -1,0 +1,67 @@
+<header class="header">
+    <div class="header__inner header__inner_left header__dropdown_menu">
+        <a href="" class="menu header__menu">
+            <img src="/images/apps-svgrepo-com.svg" alt="" class="header__pic header__pic_menu">
+        </a>
+        <div id="id456" class="header__inner_menu dropdown_menu">
+            <a href="/" class="menu__item active">Главная</a>
+            <a href="/topics" class="menu__item">Каталог</a>
+        </div>
+        <script>
+            fetch('/category-test/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const nav = document.getElementById('id456');
+                        for (let i = 0; i < 8; i++) {
+                            const link = document.createElement('a');
+                            link.setAttribute('href', '/categories/' + data[i].name);
+                            link.setAttribute('class', 'menu__item');
+                            link.textContent = data[i].name;
+                            nav.appendChild(link);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка получения данных:', error);
+                    });
+        </script>
+        <script>
+            let linksContainer = document.getElementById("id456");
+
+            let links = linksContainer.getElementsByTagName('a');
+            let url = document.location.href;
+
+            let current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+
+            for (let i = 0; i < links.length; i++) {
+                if (url === links[i].href) {
+                    links[i].className += " active";
+                }
+            }
+        </script>
+    </div>
+
+    <div class="header__inner header__inner_left">
+        <img src="/images/bachelor-hat-svgrepo-com.svg" alt="" class="header__pic header__pic_logo">
+    </div>
+
+    <div class="header__inner_ header__inner_left header__inner_left_name">
+        <a href="/" class="name header__name_link">qu:zz:cal</a>
+    </div>
+
+    {{# if is_auth}}
+        <div id="log" class="log">
+            <button id="header__btn-enter" class="btn-base" onclick="logout()">
+                Log out
+            </button>
+        </div>
+    {{else}}
+        <div id="log" class="log">
+            <a href="/login">
+                <button id="header__btn-enter" class="btn-base" onclick="login()">
+                    Log in
+                </button>
+            </a>
+        </div>
+        {{/if}}
+</header>

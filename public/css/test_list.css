@@ -1,0 +1,29 @@
+.main {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-container {
+    margin-top: -3%;
+    display: block;
+    justify-content: center;
+    width: 80%;
+    align-self: center;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-left: 24%;
+}
+
+.test_name {
+    font-family: monospace;
+    font-size: 300%;
+    align-self: center;
+}

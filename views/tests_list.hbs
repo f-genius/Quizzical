@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/test_list.css">
+<main class="main">
+    <div id="test_name_container">
+        <p id="test_name" class="test_name"></p>
+    </div>
+    <div class="swiper-container">
+    </div>
+    <script>
+        const currentUrl = window.location.pathname;
+        let lastSlashIndex = currentUrl.lastIndexOf('/');
+        let curCategory = currentUrl.substring(lastSlashIndex + 1);
+        console.log(curCategory)
+        fetch(`/tests/${curCategory}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementsByClassName('swiper-container')[0];
+                    let p = document.getElementById("test_name")
+                    p.textContent = "Тесты из категории " + curCategory;
+
+                    for (let i = 0; i < Object.keys(data).length - 1; i++){
+                        const div = document.createElement('div');
+                        div.setAttribute('class', 'swiper-slide');
+                        const link = document.createElement('a');
+                        link.setAttribute('href', `/categories/${curCategory}/${data[i].name}`);
+                        const test_name = document.createElement('h3');
+                        test_name.textContent = data[i].name;
+                        link.appendChild(test_name);
+                        div.appendChild(link);
+                        container.appendChild(div);
+                    }
+                })
+    </script>
+</main>

@@ -1,0 +1,23 @@
+<div class="main">
+
+</div>
+<link rel="stylesheet" href="/css/test.css">
+<script>
+    function getResult() {
+        const currentUrl = window.location.pathname;
+        let lastSlashIndex = currentUrl.lastIndexOf('/');
+        return parseInt(currentUrl.substring(lastSlashIndex + 1));
+    }
+
+    let res = getResult();
+    let div = document.createElement("div");
+    let div2 = document.createElement("div");
+    div2.setAttribute("class", "dop")
+    let p = document.createElement("p");
+    p.setAttribute("class", "congrats")
+    p.textContent = `Congratulations! Your score is ${res} points`
+    div.appendChild(p)
+    div.appendChild(div2)
+
+    document.getElementsByClassName("main")[0].appendChild(div)
+</script>

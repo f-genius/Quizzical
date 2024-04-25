@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/css/test.css">
+<main class="main">
+    <div id="test_container" class="test_container">
+    </div>
+    <div class="button_container">
+        <button class="start_test_button" onclick="startTest()">Отправить</button>
+    </div>
+    <script>
+        function getTestName() {
+            const currentUrl = window.location.pathname;
+            let lastSlashIndex = currentUrl.lastIndexOf('/');
+            return currentUrl.substring(lastSlashIndex + 1);
+        }
+
+        let testName = decodeURI(getTestName());
+        fetch(`/tests/name/${testName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("test_container");
+                    const name_header = document.createElement('h2');
+                    name_header.setAttribute("class", "test_name")
+                    name_header.textContent = data.name;
+                    container.appendChild(name_header)
+
+                    data.questions.forEach(question_entity => {
+                        let q_container = document.createElement("div");
+                        q_container.setAttribute("class", "question_container")
+                        let q_name = document.createElement('h3')
+                        q_name.setAttribute("class", "question_text")
+                        q_name.textContent = question_entity.text;
+                        q_container.appendChild(q_name)
+
+                        question_entity.answers.forEach(answer_entity => {
+                            let a_container = document.createElement("div");
+                            a_container.setAttribute("class", "answer_container")
+                            let a_checkbox = document.createElement("input");
+                            a_checkbox.setAttribute("type", "checkbox")
+                            a_checkbox.setAttribute("class", "points")
+                            a_container.appendChild(a_checkbox)
+                            let a_name = document.createElement('p')
+                            a_name.setAttribute("class", "answer_text")
+                            a_name.textContent = answer_entity.text;
+                            a_container.appendChild(a_name)
+
+                            q_container.appendChild(a_container)
+                        })
+                        var newCheckbox = document.createElement('input');
+                        newCheckbox.setAttribute('type', 'checkbox');
+                        newCheckbox.setAttribute('name', 'options');
+                        newCheckbox.setAttribute('required', 'true');
+                        newCheckbox.setAttribute('hidden', 'true');
+                        newCheckbox.setAttribute('onchange', 'this.checked=!document.querySelector(\'input[name="options"]:checked\')');
+                        q_container.appendChild(newCheckbox)
+
+                        container.appendChild(q_container)
+                    })
+                })
+    </script>
+    <script src="/js/test.js"></script>
+</main>

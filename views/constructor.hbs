@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="/css/constructor.css">
+<main id="main_id" class="main">
+    <div id="container" class="container">
+        <form id="participantsForm" onsubmit="sendMsg(); save_test()">
+            <div class="header__form">
+                <input id="test_saving" name="submit" type="Submit" value="Save test">
+                <input type="text" class="test_name" placeholder="Название теста">
+            </div>
+            <div id="formfield" class="question_container">
+                <input id="submit1" type="text" name="question" class="question" size="50" placeholder="Введите текст вопроса">
+            </div>
+        </form>
+    </div>
+    <div class="category_container">
+        <form id="categories_form" class="categories_form">
+            <label for="categories">Выберите категорию</label>
+            <select id="categories" class="categories">
+                <option value="">--Please choose an option--</option>
+            </select>
+        </form>
+    </div>
+    <div class="click-container">
+        <p id="click_counter">Всего попыток отправить тест: </p>
+    </div>
+    <script>
+        const socket = io('http://localhost:3000/');
+
+        socket.on('msgToClient', (message) => {
+            console.log(message);
+            receive(message);
+        });
+
+        function sendMsg(message) {
+            socket.emit('msgToServer', message);
+        }
+
+        function receive(count) {
+            // console.log(count);
+            const click_counter = document.getElementById('click_counter');
+            click_counter.innerText =
+                    'Всего попыток отправить тест: ' + count;
+        }
+    </script>
+    <script>
+        fetch('/category-test/')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('categories');
+
+                    for (let i = 0; i < Object.keys(data).length - 1; i++){
+                        const option = document.createElement('option');
+                        option.value = data[i].name;
+                        option.text = data[i].name;
+                        console.log(data[i].name)
+                        select.appendChild(option);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка получения данных:', error);
+                });
+    </script>
+    <div class="controls__question">
+        <button class="add__question" onclick="addQuestion()">Add question</button>
+        <button class="add__answer" onclick="addAnswer()">Add answer</button>
+    </div>
+    <div class="controls__answers">
+        <button class="remove__question" onclick="removeQuestion()">Remove question</button>
+        <button class="remove__answer" onclick="removeAnswer()">Remove answer</button>
+    </div>
+    <script src="/js/constructor.js"></script>
+</main>

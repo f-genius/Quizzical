@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta
+            name = "description"
+            content = "Вас ждут различные тематические тесты: образовательные, психологические,
+                   развлекательные, тесты на IQ и многие другие. Испытайте себя!" />
+    <title>{{ title }}</title>
+</head>
+<body>
+    <main class="main">
+        {{> nav}}
+        <section class="main__section main__statistics">
+            <div class="main__inner lines tests_lines">
+                <p class="main__text text_test">#тесты</p>
+                <hr class="main__line main__line__tests_lines size1_line">
+                <hr class="main__line main__line__tests_lines size2_line">
+                <hr class="main__line main__line__tests_lines size3_line">
+            </div>
+
+            <div class="main__inner lines count_lines">
+                <a href="/topics" id='click_counter' class="main__text count_test">#1466</a>
+                <hr class="main__line main__line__count_lines size3_line">
+                <hr class="main__line main__line__count_lines size2_line">
+                <hr class="main__line main__line__count_lines size1_line">
+            </div>
+
+        </section>
+
+        <section class="main__section main__info_pic">
+            <div class="main__section__info_inner">
+                <h1 class="main__info__item  main_text_header">Проверь себя!</h1>
+                <p class="main__info__item main_description">
+                    На нашем ресурсе собраны все популярные психологические тесты,
+                    которые расскажут о ваших способностях, недостатках и особенностях личности.
+                    Мы постоянно проверяем и улучшаем качество тестов, чтобы они соответствовали
+                    современным требованиям к психологическим методикам и образовательным тестам.
+                </p>
+                <a href="/topics" class="main__info__item main__button">Вперёд</a>
+            </div>
+
+            <div class="main__section__info_inner info_inner_pic">
+                <img src="/images/main-ico.png" alt="" class="main__ico">
+            </div>
+        </section>
+
+
+        <section class="main__section main__sub_info">
+
+            <div class="main__section__info_inner info__list">
+                <div class="info__list_container left">
+                    <ul class="main__list">
+                        <li class="main__list_item">Без регистрации</li>
+                        <li class="main__list_item">Большой выбор тем</li>
+                        <li class="main__list_item">Множество интересных фактов</li>
+                        <li class="main__list_item">Для любых возрастов</li>
+                        <li class="main__list_item">Польза - в каждом тесте!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main__section__info_inner info__text">
+                <div class="info__list_container right">
+                    <p class="sub_info_text">
+                        Всегда интересно узнать степень собственной эрудированности.
+                        Разнообразные тесты онлайн помогут объективно оценить уровень познаний
+                        в самых различных областях. Сайт с опросами на разные темы — это отличная
+                        возможность провести время с пользой, проверить кругозор и узнать новые
+                        факты об окружающем мире. Любые опросники направлены на проверку знаний,
+                        психики или физического здоровья. Чтобы с легкостью поддержать беседу и
+                        блеснуть эрудицией просто необходимо периодически проходить всякие
+                        тестирования. На сайте собраны разнообразные тематические тесты, которые
+                        можно пройти совершенно бесплатно и без регистрации.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="main__comments">
+            <div id="main__statistics" class="main__statistics">
+                <div class="load__container">
+                    <h2 class="main__comments_header main_text_header">Отзывы</h2>
+
+                    <div id="preloader" class="preloader">
+                        <div class="preloader__box"></div>
+                    </div>
+
+                    <script>
+                        window.addEventListener('load', function() {
+                            getCom()
+                        });
+                    </script>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
